@@ -63,8 +63,6 @@ public abstract class Planta extends Empleado {
             }
             return prestacion;
         }
-        
-    	
     	return "";
 	}
           

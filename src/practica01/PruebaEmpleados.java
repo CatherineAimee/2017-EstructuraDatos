@@ -63,7 +63,7 @@ public class PruebaEmpleados {
 		
 	if(d instanceof Directivo){
                     Directivo b = (Directivo)d;
-                    return b.administrar() + b.reportarLogros() + b.definirAumentos();
+                    return b.administrar() +"\n"+ b.reportarLogros() +"\n" + b.definirAumentos();
                 }
         else
             return "No administrador";
