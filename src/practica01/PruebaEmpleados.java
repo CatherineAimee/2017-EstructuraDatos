@@ -39,7 +39,18 @@ public class PruebaEmpleados {
 		 * TODO:
 		 * Regresa una cadena con las actividades particulares del objeto de Planta que se recibe de par·metro
 		 */
-		return "";
+            
+		if(a instanceof Directivo){
+                    Directivo b = (Directivo)a;
+                    return b.administrar() + b.reportarLogros() + b.definirAumentos();
+                }
+                
+                if(a instanceof Secretaria){
+                    Secretaria b =(Secretaria)a;
+                    return b.llenaRegistros();  
+                }
+                else
+                    return null;
 	}
 	
 	
@@ -49,6 +60,12 @@ public class PruebaEmpleados {
 		 * TODO:
 		 * Regresa una cadena con las actividades que realiza el objeto con un rol de Administrativo que se recibe de par·metro
 		 */
-		return "";
-	}
+		
+	if(d instanceof Directivo){
+                    Directivo b = (Directivo)d;
+                    return b.administrar() + b.reportarLogros() + b.definirAumentos();
+                }
+        else
+            return "No administrador";
+        }
 }

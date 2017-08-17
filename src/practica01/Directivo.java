@@ -27,16 +27,21 @@ public class Directivo extends Planta implements Administrativo{
 		 * Validar que el bono que se recibe de par·metro estÈ en el rango de 0 y BONO_MAXIMO (que se encuentra en la interfaz).
 		 * De lo contrario se le asigna 0.
 		 */
+            if(bono >= 0 && bono<= BONO_MAXIMO){
+                this.bonoExtra = bono;
+            }
+            else
+                this.bonoExtra = 0;
 	}
-   
-   
+        
 	public double sueldo() { 
 		/*
 		 * TODO:
 		 * Calcula el sueldo de un Directivo de la siguiente manera:
-		 * Invocar al mÈtodo sueldo del padre y sumarle el bonoExtra.
+		 * Invocar al mÈtodo sueldo del padre y sumarle el bonoExtra.           
 		 */
-		return 0.0;
+                 
+  		return (super.sueldo() + this.bonoExtra);
 	}
    
    public String administrar() {
@@ -51,7 +56,7 @@ public class Directivo extends Planta implements Administrativo{
 	   return "Reporta los logros de su departamento";
    }
    
-   	public void setNombrePuesto(String nombre){
+   public void setNombrePuesto(String nombre){
 		this.nombrePuesto = nombre;
 	}
 	
@@ -59,4 +64,6 @@ public class Directivo extends Planta implements Administrativo{
     public String toString() {
 		return "\n\n***  Directivo  ***\n" + super.toString() + "\nCon bono extra de: " + this.bonoExtra;
 	}
+
+    
 }
