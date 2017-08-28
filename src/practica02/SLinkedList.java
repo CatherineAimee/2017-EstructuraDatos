@@ -44,6 +44,10 @@ public class SLinkedList<E> implements List<E> {
 
 	@Override
 	public void add(int index, E element) {
+            
+            if(index < 0 || index >= size())
+                throw new IndexOutOfBoundsException();  
+            
             SNode<E> newNode =  new SNode<E>(element);      //crea un nodo nuevo con elemento que resive
             SNode<E> current = top;                     //el actual es top
             for(int i=0; i < index; i++)            //recorre la lista hasta ANTES de llegar al indice que mando
@@ -96,18 +100,15 @@ public class SLinkedList<E> implements List<E> {
 
 	@Override
 	public boolean remove(Object o) {
-            int index = 0;
-            for(SNode<E> x = top.next; x != null; x = x.next){
-                if(o == x.value)
-                    break;
+            int index = indexOf(o);
+            if(index >= 0 && index < size)
+                
                 return true;
             
             
             
-            }
-        }
-
-	@Override
+         }
+        @Override
 	public E getFirst() {
 		if(top.next == null) {
                     throw new NoSuchElementException();
@@ -130,21 +131,33 @@ public class SLinkedList<E> implements List<E> {
 
 	@Override
 	public E get(int index) {
-		// TODO Auto-generated method stub
-		return null;
+        SNode<E> current = top;                     
+            for(int i=0; i < index; i++)            
+                current = current.next; 
+            return current.next.value;
 	}
 
 	@Override
 	public E set(int index, E element) {
-		// TODO Auto-generated method stub
-		return null;
+	SNode<E> current = top;                     
+            for(int i=0; i < index; i++)            
+                current = current.next; 
+            E preview = current.next.value;
+            
+            current.next.value = element;
+            return preview;
 	}
 
 	@Override
 	public boolean contains(E e) {
-		// TODO Auto-generated method stub
-		return false;
-	}
+            SNode <E> current = top.next;
+            while(current != null){
+                if(current)
+            }
+            
+        }
+		
+	
 
 	@Override
 	public int indexOf(Object o) {
@@ -186,8 +199,12 @@ public class SLinkedList<E> implements List<E> {
 
 	@Override
 	public Object[] toArray() {
-		// TODO Auto-generated method stub
-		return null;
+            Object[] returnArray = new Object[size];
+            
+            int i = 0;
+            for(SNode<E> x= top.next; x != null; x = x.next)
+                returnArray[i++] = x.value;
+            return returnArray;
 	}
 	
 	public String toString() {
