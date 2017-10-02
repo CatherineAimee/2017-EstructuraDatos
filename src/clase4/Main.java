@@ -10,6 +10,39 @@ package clase4;
  * @author Neil
  */
 public class Main {
+    
+    public int LinearSearch(int Values[],int Target){
+            for(int i=0; i<Values.length;i++){
+                if(Values[i] == Target)
+                    return i;
+            
+                if(Values[i] > Target)
+                    i++;
+                    return -1;
+            }
+            return -1;
+        }
+        
+        public int BinarySearch(int Values[], int Target){
+            int min = 0;
+            int max = (Values.length) -1;
+            int mid = 0;
+            
+            while(min<= max)
+                mid = (min + max)/2;
+            
+                if(Target < Values[mid])
+                    max = mid -1;
+                
+                if(Target> Values[mid])
+                    min = mid +1;
+                
+                else
+                    return mid;
+                
+            return -1;
+        }  
+        
     public static void main(String[]args){
         int[] inputArray={1,2,3,4,5};
         
@@ -45,30 +78,9 @@ public class Main {
                 
         }
         
-        public int LinearSearch(Data Values[],Data Target){
-            for(int i=0; i<Values.lenght;i++)
-                if(Values[i] == Target)
-                    return i;
-            
-                if(Values[i] > Target)
-                    return -1;
-                i++;
-            
-                
-        
-           
-    }
-
-
-
         
         
-
-        
-        
-                
-        
-	}
+}
 		
 		
            
