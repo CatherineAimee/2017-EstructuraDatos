@@ -5,6 +5,8 @@
  */
 package clase4;
 
+import java.util.Arrays;
+
 /**
  *
  * @author Neil
@@ -41,12 +43,61 @@ public class Main {
                     return mid;
                 
             return -1;
-        }  
+        }
+        
+        public static void Insertionsort(int values[]){
+            
+            
+            int save = 0;     
+            for (int i = 1; i<values.length;i++){
+                for(int j=0; j<i ;j++){
+                    if(j < i && values[j] > values[i]){
+                        
+                        save = values[i];
+                        
+                        shiftRight(values,j,i);
+                        
+                        values[j] = save;
+                    } 
+                }
+            }
+        }
+        
+        public static void shiftRight(int values[], int start,int end){
+            //empieza desde j y termina en uno menor a i
+            
+            for(int i=end; i> start;i--) 
+                values[i] = values[i-1];          
+        }
+        
+        public static void Selectionsort( int values[]){
+            int smallest;
+            int ind;
+            int x;
+            
+            for(int i=0; i < values.length;i++){
+                smallest = values[i];
+                ind = i;
+                x = values[i];
+                for(int j=i; j< values.length; j++){
+                    
+                    if(values[j] <= smallest){
+                        smallest = values[j];
+                        ind = j;
+                    } 
+                    
+                }
+                values[i] = smallest;
+                values[ind] = x;   
+            }
+        }
+            
+        
         
     public static void main(String[]args){
-        int[] inputArray={1,2,3,4,5};
+        int[] inputArray={4,5,1,2,3};
         
-        Stack<Integer> iStack = new Stack<Integer>();
+        /*Stack<Integer> iStack = new Stack<Integer>();
         
         for(int i=0; i<inputArray.length; i++)
            iStack.push(inputArray[i]);
@@ -76,10 +127,17 @@ public class Main {
                 HoldingTrack1.push(inputTren[i]);
                 
                 
-        }
+        }*/
         
-        
-        
+      
+    
+      
+      Selectionsort(inputArray);
+      System.out.println(Arrays.toString(inputArray));
+
+    } 
+    
+    
 }
 		
 		
