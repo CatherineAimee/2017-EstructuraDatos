@@ -91,6 +91,25 @@ public class Main {
                 values[ind] = x;   
             }
         }
+        
+        public static void Bubblesort(int values[]){
+            Boolean notSorted = true;
+            int temp;
+            while(notSorted){
+                //Assume we won´ find a pair to swap
+                notSorted = false;
+                
+                for( int i = 1; i< values.length;i++){
+                    if(values[i] < values[i-1]){
+                        temp = values[i];
+                        values[i] = values[i-1];
+                        values[i-1] = temp;
+                        
+                        notSorted = true; 
+                    }
+                }
+            }
+        }
             
         
         
@@ -132,7 +151,7 @@ public class Main {
       
     
       
-      Selectionsort(inputArray);
+      Bubblesort(inputArray);
       System.out.println(Arrays.toString(inputArray));
 
     } 
