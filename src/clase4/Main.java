@@ -111,10 +111,98 @@ public class Main {
             }
         }
             
+        public static void MakeHeap(int values[]){  //convierte un arreglo a una representación Heap
+            for(int i =0; i< values.length; i++){
+                int index = i;
+                while(index != 0){
+                    int parent = (index -1)/2;
+                    
+                    if((values[index]) <= values[parent]){
+                    break;
+                    }
+                    
+                    int temp = values[index];
+                    values[index] = values[parent];
+                    values[parent] = temp;
+                    
+                    index = parent;
+                }
+            }   
+        }
         
+        public static int removeTopItem(int values[], int count){       //quita el elemento raíz y lo reacomoda
+            int result = values[0];
+            
+            values[0] = values[count - 1];      //el valor raiz ahora es lo que estaba en el ultimo nodo
+            
+            int index = 0;
+            while(true){
+                int child1 = 2 * index +1;
+                int child2 = 2 * index +2;
+                
+                if(child2 >= count){
+                    child2 = index;
+                }
+                
+                if(values[index] >= values[child1] && values[index] >= values[child2]){
+                    break;
+                }
+                
+                int swapChild = child1;
+                if(values[child2] > values[child1]){
+                    swapChild = child2;
+                }
+                
+                int temp = values[index];
+                values[index] = values[swapChild];
+                values[swapChild] = temp;
+                
+                index = swapChild;    
+            }
+            return result;  
+        }
         
+        public static void Quicksort(int values[], int start, int end){
+            // If the list has no more than one element, it’s sorted.
+            if(start >= end){       //caso base
+                return;
+            }
+            // Use the first item as the dividing item.         
+            int divider = values[start];
+            
+            // Move items < divider to the front of the array and  items >= divider to the end of the array.
+            Stack<Integer> before= new Stack<Integer>();        //creamos dos pilas en la primera van los más chiquicos de divider
+            Stack<Integer> after= new Stack<Integer>();         //en la segunda los más grandes
+            
+            for(int i= start + 1; i<= end; i++){        //se recorre el arreglo
+                if(values[i] < divider){            //si el valor es más pequeño que divider 
+                    before.push(values[i]);         //se va a la primera pila
+                }
+                else{
+                    after.push(values[i]);          //si no se va a la segunda pila
+                }
+            }
+            
+            int i = start;
+            while(!before.empty()){
+                values[i++] = before.pop();   
+            }
+            
+            int middle = i;
+            values[middle] = divider;
+            while(after.empty()){
+                values[i++]= after.pop();
+            }
+
+            
+            //Recursively sort the two halves 
+            Quicksort(values,start,middle - 1);
+            Quicksort(values,middle + 1,end);
+        }
+        
+   
     public static void main(String[]args){
-        int[] inputArray={4,5,1,2,3};
+        int[] inputArray={10,4,1,240,1024,23,21,3048,0,8000,1000};
         
         /*Stack<Integer> iStack = new Stack<Integer>();
         
@@ -148,11 +236,9 @@ public class Main {
                 
         }*/
         
-      
-    
-      
-      Bubblesort(inputArray);
+     
       System.out.println(Arrays.toString(inputArray));
+      
 
     } 
     
